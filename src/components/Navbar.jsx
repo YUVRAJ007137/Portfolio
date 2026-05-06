@@ -1,178 +1,116 @@
-import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-    const [activeSection, setActiveSection] = useState("Home");
-    
-    const navItems = [
-        { href: "#Home", label: "Home" },
-        { href: "#About", label: "About" },
-        { href: "#Portofolio", label: "Portofolio" },
-        { href: "#Contact", label: "Contact" },
-    ];
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScroll = useRef(0);
+  const location = useLocation();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-            const sections = navItems.map(item => {
-                const section = document.querySelector(item.href);
-                if (section) {
-                    return {
-                        id: item.href.replace("#", ""),
-                        offset: section.offsetTop - 550,
-                        height: section.offsetHeight
-                    };
-                }
-                return null;
-            }).filter(Boolean);
+  useEffect(() => {
+    const handleScroll = () => {
+      const current = window.scrollY;
+      setScrolled(current > 50);
+      // Navbar remains permanently sticky (no auto-hide)
+      setHidden(false);
+      lastScroll.current = current;
 
-            const currentPosition = window.scrollY;
-            const active = sections.find(section => 
-                currentPosition >= section.offset && 
-                currentPosition < section.offset + section.height
-            );
-
-            if (active) {
-                setActiveSection(active.id);
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        handleScroll();
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
+      // Active section detection (only on home page)
+      if (window.location.pathname === '/') {
+        const sections = ['work', 'education', 'projects', 'about', 'contact'];
+        for (const id of sections.reverse()) {
+          const el = document.getElementById(id);
+          if (el && el.getBoundingClientRect().top < 300) {
+            setActiveSection(id);
+            break;
+          }
         }
-    }, [isOpen]);
-
-    const scrollToSection = (e, href) => {
-        e.preventDefault();
-        const section = document.querySelector(href);
-        if (section) {
-            const top = section.offsetTop - 100;
-            window.scrollTo({
-                top: top,
-                behavior: "smooth"
-            });
-        }
-        setIsOpen(false);
+      }
     };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    return (
-        <nav
-        className={`fixed w-full top-0 z-50 transition-all duration-500 ${
-            isOpen
-                ? "bg-[#030014] opacity-100"
-                : scrolled
-                ? "bg-[#030014]/50 backdrop-blur-xl"
-                : "bg-transparent"
-        }`}
-    >
-        <div className="mx-auto px-4 sm:px-6 lg:px-[10%]">
-            <div className="flex items-center justify-between h-16">
-                {/* Logo */}
-                <div className="flex-shrink-0">
-                    <a
-                        href="#Home"
-                        onClick={(e) => scrollToSection(e, "#Home")}
-                        className="text-xl font-bold bg-gradient-to-r from-[#a855f7] to-[#6366f1] bg-clip-text text-transparent"
-                    >
-                        YUVRAJ
-                    </a>
-                </div>
-    
-                {/* Desktop Navigation */}
-                <div className="hidden md:block">
-                    <div className="ml-8 flex items-center space-x-8">
-                        {navItems.map((item) => (
-                            <a
-                                key={item.label}
-                                href={item.href}
-                                onClick={(e) => scrollToSection(e, item.href)}
-                                className="group relative px-1 py-2 text-sm font-medium"
-                            >
-                                <span
-                                    className={`relative z-10 transition-colors duration-300 ${
-                                        activeSection === item.href.substring(1)
-                                            ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent font-semibold"
-                                            : "text-[#e2d3fd] group-hover:text-white"
-                                    }`}
-                                >
-                                    {item.label}
-                                </span>
-                                <span
-                                    className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] transform origin-left transition-transform duration-300 ${
-                                        activeSection === item.href.substring(1)
-                                            ? "scale-x-100"
-                                            : "scale-x-0 group-hover:scale-x-100"
-                                    }`}
-                                />
-                            </a>
-                        ))}
-                    </div>
-                </div>
-    
-                {/* Mobile Menu Button */}
-                <div className="md:hidden">
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className={`relative p-2 text-[#e2d3fd] hover:text-white transition-transform duration-300 ease-in-out transform ${
-                            isOpen ? "rotate-90 scale-125" : "rotate-0 scale-100"
-                        }`}
-                    >
-                        {isOpen ? (
-                            <X className="w-6 h-6" />
-                        ) : (
-                            <Menu className="w-6 h-6" />
-                        )}
-                    </button>
-                </div>
-            </div>
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+      // Close menu with Escape key
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          setMenuOpen(false);
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [menuOpen]);
+
+  const links = [
+    { href: '/#work', label: 'Work', match: 'work' },
+    { href: '/#education', label: 'Education', match: 'education' },
+    { href: '/#projects', label: 'Projects', match: 'projects' },
+    { href: '/#about', label: 'About', match: 'about' },
+    { href: '/#contact', label: 'Contact', match: 'contact' },
+    { href: '/blog', label: 'Blog', match: 'blog' },
+  ];
+
+  return (
+    <>
+      <nav className={`nav ${scrolled ? 'nav--scrolled' : ''} ${hidden ? 'nav--hidden' : ''}`}>
+        <Link to="/" className="nav__logo">
+          <span className="nav__logo-dot" />
+          YC
+        </Link>
+        <div className="nav__links">
+          {links.map(l => (
+            <Link
+              key={l.href}
+              to={l.href}
+              className={`nav__link ${
+                (location.pathname === '/' && activeSection === l.match) || (location.pathname === '/blog' && l.match === 'blog') 
+                  ? 'nav__link--active' 
+                  : ''
+              }`}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <a href="mailto:yuvrajsc42@gmail.com" className="nav__cta">
+            Let's talk
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m7 17 9.2-9.2M17 17V7H7"/></svg>
+          </a>
         </div>
-    
-        {/* Mobile Menu Overlay */}
-        <div
-            className={`md:hidden h-2/5 fixed inset-0 bg-[#030014] transition-all duration-300 ease-in-out ${
-                isOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-[-100%] pointer-events-none"
-            }`}
-            style={{ top: "64px" }}
-        >
-            <div className="flex flex-col h-full">
-                <div className="px-4 py-6 space-y-4 flex-1 ">
-                    {navItems.map((item, index) => (
-                        <a
-                            key={item.label}
-                            href={item.href}
-                            onClick={(e) => scrollToSection(e, item.href)}
-                            className={`block px-4 py-3 text-lg font-medium transition-all duration-300 ease ${
-                                activeSection === item.href.substring(1)
-                                    ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent font-semibold"
-                                    : "text-[#e2d3fd] hover:text-white"
-                            }`}
-                            style={{
-                                transitionDelay: `${index * 100}ms`,
-                                transform: isOpen ? "translateX(0)" : "translateX(50px)",
-                                opacity: isOpen ? 1 : 0,
-                            }}
-                        >
-                            {item.label}
-                        </a>
-                    ))}
-                </div>
-            </div>
+        <button className={`nav__burger ${menuOpen ? 'nav__burger--open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+          <span /><span /><span />
+        </button>
+      </nav>
+
+      <div className={`mobile-overlay ${menuOpen ? 'mobile-overlay--open' : ''}`}>
+        <div className="mobile-overlay__inner">
+          {links.map((l, i) => (
+            <Link
+              key={l.href}
+              to={l.href}
+              className="mobile-overlay__link"
+              style={{ transitionDelay: menuOpen ? `${i * 0.08 + 0.15}s` : '0s' }}
+              onClick={() => setMenuOpen(false)}
+            >
+              <span className="mobile-overlay__num">0{i + 1}</span>
+              {l.label}
+            </Link>
+          ))}
+          <a href="mailto:yuvrajsc42@gmail.com" className="mobile-overlay__email" onClick={() => setMenuOpen(false)}>
+            yuvrajsc42@gmail.com
+          </a>
         </div>
-    </nav>
-    
-    );
+      </div>
+    </>
+  );
 };
 
 export default Navbar;

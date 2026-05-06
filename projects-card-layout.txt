@@ -1,0 +1,277 @@
+═══════════════════════════════════════════════════════════════════════════════
+                 PROJECTS PAGE — SIDE-BY-SIDE CARDS LAYOUT
+═══════════════════════════════════════════════════════════════════════════════
+
+DESKTOP VIEW (1024px+)
+─────────────────────────────────────────────────────────────────────────────
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ YC                                     Work  About  Contact   [Let's talk] │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+                                    02
+
+                              PROJECTS
+
+                      Things I've shipped into the world
+
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│  ★ [Thumbnail 320×280]  │  Violence Detection System                      │
+│   Dark olive border,    │  ────────────────────────────────────────────   │
+│   sage green glow       │                                                  │
+│   on hover              │  Real-time AI threat detection web app with      │
+│                         │  live camera feeds. Identifies dangerous         │
+│                         │  objects in under 100ms.                         │
+│                         │                                                  │
+│                         │  Built in: 3 weeks  |  Impact: 1000+ users      │
+│                         │                                                  │
+│                         │  Stack:                                          │
+│                         │  [TypeScript]  [React]  [Firebase]  [OpenCV]    │
+│                         │                                                  │
+│                         │  🔗 Live Demo →  |  🔗 GitHub →                 │
+└────────────────────────────────────────────────────────────────────────────┘
+
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│  ★ [Thumbnail 320×280]  │  Text-to-Image Generator                        │
+│   Dark olive border,    │  ────────────────────────────────────────────   │
+│   sage green glow       │                                                  │
+│   on hover              │  Local Stable Diffusion v1 implementation        │
+│                         │  with custom UI. Generate high-quality images    │
+│                         │  offline without API rate limits.                │
+│                         │                                                  │
+│                         │  Built in: 2 weeks  |  Impact: 5 studios        │
+│                         │                                                  │
+│                         │  Stack:                                          │
+│                         │  [Python]  [Flask]  [Gradio]  [Stable Diffusion]│
+│                         │                                                  │
+│                         │  🔗 Live Demo →  |  🔗 GitHub →                 │
+└────────────────────────────────────────────────────────────────────────────┘
+
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│  [Thumbnail 320×280]  │  Tech Desk Landing Page                           │
+│  Dark olive border,   │  ────────────────────────────────────────────     │
+│  subtle glow          │                                                    │
+│  on hover             │  Production landing page for Tech Desk development │
+│                       │  agency. Built with modern React and Tailwind.    │
+│                       │                                                    │
+│                       │  Built in: 5 days  |  Impact: 50+ leads/month     │
+│                       │                                                    │
+│                       │  Stack:                                           │
+│                       │  [React]  [TypeScript]  [Tailwind CSS]            │
+│                       │                                                    │
+│                       │  🔗 Live Demo →  |  🔗 GitHub →                   │
+└────────────────────────────────────────────────────────────────────────────┘
+
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│  [Thumbnail 320×280]  │  Driving School Management App                    │
+│  Dark olive border,   │  ────────────────────────────────────────────     │
+│  subtle glow          │                                                    │
+│  on hover             │  Full-stack web application for managing driving  │
+│                       │  school operations. Handles student management,   │
+│                       │  scheduling, and payment processing.              │
+│                       │                                                    │
+│                       │  Built in: 4 weeks  |  Impact: 2 schools         │
+│                       │                                                    │
+│                       │  Stack:                                           │
+│                       │  [PHP]  [MySQL]  [JavaScript]  [Bootstrap]        │
+│                       │                                                    │
+│                       │  🔗 Live Demo →  |  🔗 GitHub →                   │
+└────────────────────────────────────────────────────────────────────────────┘
+
+                            [More projects...]
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+TABLET VIEW (768-1023px)
+─────────────────────────────────────────────────────────────────────────────
+
+┌────────────────────────────────────────────────────────────┐
+│  [Thumb 280×240]  │  Violence Detection System            │
+│                   │  ────────────────────────────────     │
+│  Dark olive       │  Real-time AI threat detection...      │
+│  rounded border   │                                        │
+│                   │  Built in: 3 weeks | Impact: 1000+    │
+│                   │  Stack: [TypeScript] [React] [Fb]      │
+│                   │  🔗 Live Demo →  |  🔗 GitHub →        │
+└────────────────────────────────────────────────────────────┘
+
+(Same for other projects, slightly compressed)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+MOBILE VIEW (<768px)
+─────────────────────────────────────────────────────────────────────────────
+
+┌─────────────────────────┐
+│ YC                      │
+│              [Menu ≡]   │
+└─────────────────────────┘
+
+        02
+
+   PROJECTS
+
+   Things I've shipped...
+
+
+┌─────────────────────────┐
+│   [Thumbnail]           │
+│   Full-width,           │
+│   auto height           │
+│                         │
+│   Violence Detection    │
+│   System                │
+│                         │
+│   Real-time AI threat   │
+│   detection web app...  │
+│                         │
+│   Built in: 3 weeks     │
+│   Impact: 1000+ users   │
+│                         │
+│   Stack:                │
+│   [TypeScript]          │
+│   [React]               │
+│   [Firebase]            │
+│   [OpenCV]              │
+│                         │
+│   🔗 Live Demo → |      │
+│   🔗 GitHub →           │
+└─────────────────────────┘
+
+┌─────────────────────────┐
+│   [Thumbnail]           │
+│                         │
+│   Text-to-Image Gen     │
+│                         │
+│   Local Stable Diffusion│
+│   implementation...     │
+│                         │
+│   Built in: 2 weeks     │
+│   Impact: 5 studios     │
+│                         │
+│   Stack:                │
+│   [Python]              │
+│   [Flask]               │
+│   [Gradio]              │
+│                         │
+│   🔗 Live Demo → |      │
+│   🔗 GitHub →           │
+└─────────────────────────┘
+
+        [More projects...]
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+HOVER STATE — DESKTOP
+─────────────────────────────────────────────────────────────────────────────
+
+When hovering over a card:
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ ┌────────────────────────────────────────────────────────────────────────┐ │
+│ │ [Thumbnail with             │  Violence Detection System             │ │
+│ │  sage green glow]           │  ────────────────────────────────────  │ │
+│ │ 1.05x scale                 │                                        │ │
+│ │ Shadow deepens              │  Real-time AI threat detection web     │ │
+│ │                             │  app with live camera feeds...         │ │
+│ │                             │                                        │ │
+│ │                             │  Built in: 3 weeks | Impact: 1000+    │ │
+│ │                             │                                        │ │
+│ │                             │  Stack: [TypeScript] [React]...        │ │
+│ │                             │                                        │ │
+│ │                             │  🔗 Live Demo →  |  🔗 GitHub →        │ │
+│ └────────────────────────────────────────────────────────────────────────┘ │
+│   ↑ Entire card background shifts to dark olive (#1A1A14)                  │
+│   ↑ Transition: 0.3s ease                                                   │
+└────────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+COLOR PALETTE (Projects Page)
+─────────────────────────────────────────────────────────────────────────────
+
+Background:          #0D0D0B (Warm Black)
+Card Border (Left):  #4ADE80 (Sage Green) — 3px
+Card Border (Left):  #4ADE80 (Sage Green) — 4px [Featured]
+Card Background:     transparent → #1A1A14 (Dark Olive) on hover
+Project Name:        #FAFAF0 (Cream)
+Description:         #B8B8A8 (Muted Cream)
+Meta Text:           #4ADE80 (Sage Green)
+Stack Tag BG:        #1A1A14 (Dark Olive)
+Stack Tag Text:      #FAFAF0 (Cream)
+Image Border:        #1A1A14 (Dark Olive)
+Glow/Hover Effect:   #4ADE8044 (Sage Green 44% opacity)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+SPACING & DIMENSIONS
+─────────────────────────────────────────────────────────────────────────────
+
+Card Container:
+  Width:          100% (max-width: 1000px on desktop)
+  Min-height:     320px
+  Padding:        30px
+  Margin bottom:  40px
+  Gap between     
+  image & content: 30px
+
+Thumbnail:
+  Width:          320px (fixed on desktop)
+  Height:         280px (fixed on desktop)
+  Border-radius:  8px
+  Border:         2px solid #1A1A14
+  Aspect ratio:   16:9 (for consistency)
+
+Content Area:
+  Flex:           1 (grows to fill)
+  Padding-left:   30px
+  Display:        flex
+  Direction:      column
+  Justify:        space-between
+
+Typography:
+  Project Name:   28px, bold, cream
+  Divider:        60px wide, 2px tall, sage green
+  Description:    16px, regular, muted cream
+  Meta:           13px, medium, sage green
+  Stack Tags:     12px, medium, cream on dark olive
+  Links:          13px, monospace, sage green
+
+Mobile:
+  Card padding:   20px
+  Project name:   22px
+  Description:    14px
+  Thumbnail:      100% width, auto height
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+DATA ENTRY TEMPLATE
+─────────────────────────────────────────────────────────────────────────────
+
+const projects = [
+  {
+    id: 1,
+    name: "Project Name Here",
+    description: "2-3 sentence description of what it does and why it matters",
+    thumbnail: "/images/project-thumbnail.png",  // 320x280px
+    stack: ["Tech1", "Tech2", "Tech3"],
+    builtIn: "X weeks",
+    impact: "Description of impact",
+    liveUrl: "https://...",
+    githubUrl: "https://github.com/...",
+    pin: true,  // Set to true for featured projects (top 2)
+  },
+  // ... more projects
+]
+
+
+═══════════════════════════════════════════════════════════════════════════════

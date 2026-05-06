@@ -1,187 +1,243 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap');
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: "Poppins", serif;
-	scroll-behavior: smooth;
-	scrollbar-width: thin;
-	scrollbar-color: rgba(99, 102, 241, 0.3) rgba(12, 5, 53, 0.356);
+/* ─── DESIGN TOKENS ─── */
+:root {
+  --bg: #060606;
+  --surface: #0e0e0e;
+  --surface-raised: #141414;
+  --surface-hover: #1a1a1a;
+  --border: rgba(255,255,255,0.06);
+  --border-hover: rgba(255,255,255,0.12);
+  --green: #22c55e;
+  --green-dim: rgba(34,197,94,0.12);
+  --green-glow: rgba(34,197,94,0.25);
+  --green-bright: #4ade80;
+  --text: #e8e8e8;
+  --text-secondary: #737373;
+  --text-dim: #525252;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 100px;
+  --transition: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html,
+/* ─── RESET ─── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-	overflow-x: hidden;
-	background: #030014;
-	scroll-behavior: smooth !important;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-@keyframes blob {
-	0%,
-	100% {
-		transform: translateY(0);
-	}
-	50% {
-		transform: translateY(-20px);
-	}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { border: none; cursor: pointer; font-family: inherit; }
+
+/* ─── NOISE GRAIN OVERLAY ─── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  mix-blend-mode: overlay;
 }
 
-.animate-blob {
-	animation: blob 8s infinite;
+/* ─── CUSTOM SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 100px; }
+::-webkit-scrollbar-thumb:hover { background: var(--green); }
+
+/* ─── SELECTION ─── */
+::selection {
+  background: var(--green-dim);
+  color: var(--green-bright);
 }
 
-.animation-delay-2000 {
-	animation-delay: 2s;
+/* ─── GLOBAL ANIMATIONS ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.animation-delay-4000 {
-	animation-delay: 4s;
+@keyframes blink {
+  50% { opacity: 0; }
 }
 
-/* Enhanced Custom Scrollbar Styles */
-::-webkit-scrollbar {
-	width: 8px;
-	height: 8px;
-	background-color: transparent;
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 var(--green-glow); }
+  50% { box-shadow: 0 0 20px 5px var(--green-glow); }
+}
+
+/* Smooth scroll reveal utility */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s var(--transition);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── KEYBOARD NAVIGATION & ACCESSIBILITY ─── */
+*:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  
-  ::-webkit-scrollbar-track {
-	background: rgba(3, 0, 20, 0.4);
-	backdrop-filter: blur(8px);
-	-webkit-backdrop-filter: blur(8px);
-	border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  :root {
+    --border: rgba(255,255,255,0.15);
+    --border-hover: rgba(255,255,255,0.25);
   }
-  
-  ::-webkit-scrollbar-thumb {
-	background: rgba(99, 102, 241, 0.3);
-	backdrop-filter: blur(4px);
-	-webkit-backdrop-filter: blur(4px);
-	border-radius: 20px;
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	box-shadow: 
-	  inset 0 0 20px rgba(168, 85, 247, 0.2),
-	  0 0 10px rgba(99, 102, 241, 0.2);
-	transition: all 0.3s ease;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-	background: rgba(99, 102, 241, 0.5);
-	border: 1px solid rgba(168, 85, 247, 0.3);
-	box-shadow: 
-	  inset 0 0 30px rgba(168, 85, 247, 0.3),
-	  0 0 15px rgba(99, 102, 241, 0.3);
-  }
-  
-  /* When scrollbar is in active/clicked state */
-  ::-webkit-scrollbar-thumb:active {
-	background: rgba(99, 102, 241, 0.6);
-	border: 1px solid rgba(168, 85, 247, 0.4);
-	box-shadow: 
-	  inset 0 0 40px rgba(168, 85, 247, 0.4),
-	  0 0 20px rgba(99, 102, 241, 0.4);
-  }
-  
-  ::-webkit-scrollbar-corner {
-	background: transparent;
+}
+
+/* ─── LIGHT MODE ─── */
+[data-theme="light"] {
+  --bg: #f8f8f6;
+  --surface: #f0f0ea;
+  --surface-raised: #e8e8e0;
+  --surface-hover: #e0e0d8;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.12);
+  --green: #15803d;
+  --green-dim: rgba(21, 128, 61, 0.12);
+  --green-glow: rgba(21, 128, 61, 0.25);
+  --green-bright: #22c55e;
+  --text: #1a1a18;
+  --text-secondary: #666660;
+  --text-dim: #a8a8a0;
+}
+
+/* ─── PRINT STYLES ─── */
+@media print {
+  /* Hide interactive elements */
+  .nav,
+  .nav__burger,
+  .theme-toggle,
+  .chat-widget__fab,
+  .chat-widget,
+  .noise-overlay,
+  footer {
+    display: none !important;
   }
 
-  [data-aos] {
-	will-change: transform, opacity !important;
+  /* Optimize for printing */
+  html, body {
+    background: white;
+    color: black;
   }
 
+  main {
+    max-width: 100%;
+    padding: 0;
+  }
 
+  /* Page breaks */
+  section {
+    page-break-inside: avoid;
+  }
 
- @keyframes shine {
-  from {
-	     left: -100%;
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
   }
-	  to {
-	    left: 200%;
-	   }
-	 }
-	 .animate-shine {
-   animation: shine 1.5s ease-in-out infinite;
- }
 
-  
-/*   @media (prefers-color-scheme: dark) {
-	::-webkit-scrollbar-track {
-	  background: rgba(3, 0, 20, 0.6);
-	}
-  } */
+  /* Links visible in print */
+  a {
+    text-decoration: underline;
+    color: black;
+  }
 
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
 
-/* 
-  .container {
-	width: 100%;
-	height: 100%;
+  /* Project cards - simplified for print */
+  .project-card {
+    page-break-inside: avoid;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
   }
-  
-  .main > div {
-	position: absolute;
-	will-change: transform;
-	border-radius: 50%;
-	background: lightcoral;
-	box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-	opacity: 0.6;
+
+  /* Remove shadows and glows */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
   }
-  
-  .main > div:nth-child(1) {
-	width: 60px;
-	height: 60px;
+
+  /* Optimize images */
+  img {
+    max-width: 100%;
+    height: auto;
   }
-  
-  .main > div:nth-child(2) {
-	width: 125px;
-	height: 125px;
+}
+
+/* ─── SKIP TO CONTENT LINK ─── */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--green);
+  color: var(--bg);
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* ─── RESPONSIVE UTILITIES ─── */
+@media (max-width: 768px) {
+  :root {
+    --radius: 12px;
+    --radius-sm: 8px;
   }
-  
-  .main > div:nth-child(3) {
-	width: 75px;
-	height: 75px;
+
+  html {
+    font-size: 14px;
   }
-  
-  .main > div::after {
-	content: '';
-	position: absolute;
-	top: 20px;
-	left: 20px;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	background: rgba(255, 0, 0, 0.8);
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 20px;
   }
-  
-  .main > div:nth-child(2)::after {
-	top: 35px;
-	left: 35px;
-	width: 35px;
-	height: 35px;
-  }
-  
-  .main > div:nth-child(3)::after {
-	top: 25px;
-	left: 25px;
-	width: 25px;
-	height: 25px;
-  }
-  
-  .main {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	filter: url('#blob');
-	overflow: hidden;
-	background: transparent;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	cursor: default;
-  } */
+}
+

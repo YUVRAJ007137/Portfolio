@@ -1,80 +1,48 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React, { useState } from 'react';
-import "./index.css";
-import Home from "./Pages/Home";
-import About from "./Pages/About";
-import AnimatedBackground from "./components/Background";
-import Navbar from "./components/Navbar";
-import Portofolio from "./Pages/Portofolio";
-import ContactPage from "./Pages/Contact";
-import ProjectDetails from "./components/ProjectDetail";
-import WelcomeScreen from "./Pages/WelcomeScreen";
-import { AnimatePresence } from 'framer-motion';
+import React, { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import InteractiveGrid from './components/InteractiveGrid'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import ThemeToggle from './components/ThemeToggle'
+import Home from './pages/Home'
+import Blog from './pages/Blog'
+import './index.css'
 
-const LandingPage = ({ showWelcome, setShowWelcome }) => {
-  return (
-    <>
-      <AnimatePresence mode="wait">
-        {showWelcome && (
-          <WelcomeScreen onLoadingComplete={() => setShowWelcome(false)} />
-        )}
-      </AnimatePresence>
+const ScrollHandler = () => {
+  const location = useLocation();
 
-      {!showWelcome && (
-        <>
-          <Navbar />
-          <AnimatedBackground />
-          <Home />
-          <About />
-          <Portofolio />
-          <ContactPage />
-          <footer>
-            <center>
-              <hr className="my-3 border-gray-400 opacity-15 sm:mx-auto lg:my-6 text-center" />
-              <span className="block text-sm pb-4 text-gray-500 text-center dark:text-gray-400">
-                © 2025{" "}
-                <a href="https://techdesk.vercel.app/" className="hover:underline">
-                  Tech Desk™
-                </a>
-                . All Rights Reserved.
-              </span>
-            </center>
-          </footer>
-        </>
-      )}
-    </>
-  );
+  useEffect(() => {
+    if (location.hash) {
+      setTimeout(() => {
+        const id = location.hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
+
+  return null;
 };
 
-const ProjectPageLayout = () => (
-  <>
-    <ProjectDetails />
-    <footer>
-      <center>
-        <hr className="my-3 border-gray-400 opacity-15 sm:mx-auto lg:my-6 text-center" />
-       <span className="block text-sm pb-4 text-gray-500 text-center dark:text-gray-400">
-                © 2025{" "}
-                <a href="https://techdesk.vercel.app/" className="hover:underline">
-                  Tech Desk™
-                </a>
-                . All Rights Reserved.
-              </span>
-      </center>
-    </footer>
-  </>
-);
-
 function App() {
-  const [showWelcome, setShowWelcome] = useState(true);
-
   return (
     <BrowserRouter>
+      <ScrollHandler />
+      <InteractiveGrid />
+      <div className="noise-overlay" />
+      <Navbar />
       <Routes>
-        <Route path="/" element={<LandingPage showWelcome={showWelcome} setShowWelcome={setShowWelcome} />} />
-        <Route path="/project/:id" element={<ProjectPageLayout />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
       </Routes>
+      <Footer />
+      <ThemeToggle />
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

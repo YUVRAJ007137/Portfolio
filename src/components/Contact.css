@@ -1,0 +1,194 @@
+/* ─── CONTACT ─── */
+.contact {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.contact__inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.contact__header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 700px;
+}
+
+.contact__heading {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -2px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.contact__heading-green {
+  color: var(--green);
+}
+
+.contact__subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.contact__links-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.contact__link-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 28px 24px;
+  background: var(--surface-raised);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.3s var(--transition);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  width: calc(25% - 15px);
+  min-width: 220px;
+}
+
+.contact__link-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--brand-color, var(--green)), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact__link-card:hover {
+  border-color: color-mix(in srgb, var(--brand-color, var(--green)) 40%, transparent);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--brand-color, var(--green)) 15%, transparent), 0 0 20px color-mix(in srgb, var(--brand-color, var(--green)) 5%, transparent);
+  transform: translateY(-4px);
+}
+
+.contact__link-card:hover::before {
+  opacity: 1;
+}
+
+.contact__link-icon {
+  font-size: 32px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.contact__link-card:hover .contact__link-icon {
+  transform: scale(1.15);
+}
+
+.contact__link-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.contact__link-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Ambient glow orb */
+.contact__glow {
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ambient glow orb */
+.contact__glow {
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .contact__inner {
+    padding: 80px 24px 100px;
+    gap: 60px;
+  }
+
+  .contact__heading {
+    font-size: 36px;
+  }
+
+  .contact__subtitle {
+    font-size: 15px;
+  }
+
+  .contact__link-card {
+    width: calc(50% - 10px);
+  }
+  
+  .contact__links-grid {
+    gap: 16px;
+  }
+
+  .contact__link-card {
+    padding: 20px 16px;
+  }
+
+  .contact__link-icon {
+    font-size: 28px;
+  }
+
+  .contact__link-name {
+    font-size: 14px;
+  }
+}
+
+[data-theme="light"] .contact__link-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(21, 128, 61, 0.12);
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+}
+
+[data-theme="light"] .contact__link-card:hover {
+  border-color: color-mix(in srgb, var(--brand-color, #15803d) 30%, transparent);
+  box-shadow: 0 14px 32px rgba(17, 24, 39, 0.1), 0 0 22px color-mix(in srgb, var(--brand-color, #15803d) 12%, transparent);
+}
+
+[data-theme="light"] .contact__link-card::before {
+  background: linear-gradient(to right, var(--brand-color, #15803d), transparent);
+}

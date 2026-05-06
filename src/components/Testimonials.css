@@ -1,0 +1,222 @@
+/* ─── TESTIMONIALS SECTION ─── */
+.testimonials-section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonials-section__header {
+  margin-bottom: 60px;
+}
+
+.testimonials-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.testimonial-card {
+  flex: 1;
+  max-width: 600px;
+  padding: 40px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.3s var(--transition);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.testimonial-card:hover {
+  border-color: var(--green);
+  box-shadow: 0 12px 48px rgba(34, 197, 94, 0.15);
+}
+
+.testimonial-card__rating {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.testimonial-card__star {
+  color: var(--green);
+  font-size: 16px;
+}
+
+.testimonial-card__text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.testimonial-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), #4ADE80);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--bg);
+  font-size: 14px;
+}
+
+.testimonial-card__name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.testimonial-card__role {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* Navigation Buttons */
+.testimonials-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.testimonials-nav:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--bg);
+}
+
+.testimonials-nav--prev {
+  left: 0;
+}
+
+.testimonials-nav--next {
+  right: 0;
+}
+
+/* Dots */
+.testimonials-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.testimonials-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s var(--transition);
+}
+
+.testimonials-dot:hover,
+.testimonials-dot--active {
+  background: var(--green);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Accessibility */
+.testimonials-nav:focus-visible,
+.testimonials-dot:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .testimonials-section {
+    padding: 60px 20px;
+  }
+
+  .testimonial-card {
+    padding: 32px;
+    min-height: 260px;
+  }
+
+  .testimonial-card__text {
+    font-size: 16px;
+  }
+
+  .testimonials-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .testimonials-nav--prev {
+    left: -20px;
+  }
+
+  .testimonials-nav--next {
+    right: -20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .testimonials-container {
+    gap: 16px;
+  }
+
+  .testimonials-nav {
+    position: static;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .testimonials-nav--prev,
+  .testimonials-nav--next {
+    left: auto;
+    right: auto;
+  }
+
+  .testimonial-card {
+    min-height: auto;
+  }
+}
+
+[data-theme="light"] .testimonial-card {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
+}
+
+[data-theme="light"] .testimonial-card:hover {
+  box-shadow: 0 14px 32px rgba(17, 24, 39, 0.12), 0 0 24px rgba(21, 128, 61, 0.12);
+}
+
+[data-theme="light"] .testimonials-nav:hover {
+  background: var(--green);
+  color: #ffffff;
+}
+
+[data-theme="light"] .testimonials-dot {
+  background: rgba(21, 128, 61, 0.16);
+}

@@ -1,0 +1,44 @@
+/* ─── INTERACTIVE GRID ─── */
+.interactive-grid-container {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.interactive-grid {
+  position: absolute;
+  inset: -100px; /* Overshoot to prevent edges showing on scroll/mask */
+  background-size: 60px 60px;
+  background-image: 
+    radial-gradient(circle at 1px 1px, var(--dot-color) 2px, transparent 3px),
+    linear-gradient(to right, var(--line-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line-color) 1px, transparent 1px);
+  will-change: mask-image;
+}
+
+.interactive-grid--dim {
+  --line-color: rgba(34, 197, 94, 0.08);
+  --dot-color: rgba(34, 197, 94, 0.15);
+  filter: drop-shadow(0 0 3px rgba(34, 197, 94, 0.2));
+}
+
+.interactive-grid--bright {
+  --line-color: rgba(34, 197, 94, 0.25);
+  --dot-color: rgba(34, 197, 94, 1);
+  /* Optional: add a tiny bit of drop-shadow to the bright grid using filter */
+  filter: drop-shadow(0 0 6px rgba(34, 197, 94, 0.6));
+}
+
+.interactive-grid-cursor-glow {
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.12) 0%, transparent 60%);
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}

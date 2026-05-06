@@ -1,0 +1,180 @@
+/* ─── EDUCATION ─── */
+.education {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+
+.education__inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 40px;
+}
+
+.education__header {
+  margin-bottom: 60px;
+}
+
+/* Timeline */
+.education__timeline {
+  position: relative;
+  max-width: 800px;
+  margin-left: 20px;
+}
+
+.education__line {
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--green), transparent);
+  opacity: 0.3;
+}
+
+.education__item {
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 50px;
+}
+
+.education__item:last-child {
+  margin-bottom: 0;
+}
+
+.education__dot {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: var(--bg);
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--green-glow);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.education__item:hover .education__dot {
+  background: var(--green);
+  transform: scale(1.2);
+}
+
+.education__content {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  padding: 30px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.education__item:hover .education__content {
+  background: #1A1A14;
+  border-color: rgba(74, 222, 128, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover Glow Effect */
+.education__content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--green);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.education__item:hover .education__content::before {
+  opacity: 1;
+}
+
+.education__year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--green);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.education__degree {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.education__institution {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.education__meta {
+  margin-bottom: 16px;
+}
+
+.education__grade {
+  display: inline-block;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--bg);
+  background: var(--green);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.education__details {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .education__inner {
+    padding: 80px 24px;
+  }
+  
+  .education__timeline {
+    margin-left: 10px;
+  }
+  
+  .education__content {
+    padding: 20px;
+  }
+  
+  .education__degree {
+    font-size: 20px;
+  }
+}
+
+[data-theme="light"] .education__content {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(21, 128, 61, 0.12);
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+}
+
+[data-theme="light"] .education__item:hover .education__content {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(21, 128, 61, 0.28);
+  box-shadow: 0 14px 30px rgba(17, 24, 39, 0.1), 0 0 22px rgba(21, 128, 61, 0.08);
+}
+
+[data-theme="light"] .education__item:hover .education__dot {
+  background: var(--green);
+}

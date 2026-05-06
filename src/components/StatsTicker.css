@@ -1,0 +1,86 @@
+/* ─── STATS TICKER ─── */
+.ticker {
+  width: 100%;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+/* Fading edges */
+.ticker::before,
+.ticker::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.ticker::before {
+  left: 0;
+  background: linear-gradient(to right, var(--surface), transparent);
+}
+.ticker::after {
+  right: 0;
+  background: linear-gradient(to left, var(--surface), transparent);
+}
+
+.ticker__track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 25s linear infinite;
+}
+
+.ticker__track:hover {
+  animation-play-state: paused;
+}
+
+.ticker__group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ticker__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 0 30px;
+  white-space: nowrap;
+}
+
+.ticker__value {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.ticker__label {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.ticker__sep {
+  color: var(--green);
+  font-size: 10px;
+  opacity: 0.5;
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+@media (max-width: 768px) {
+  .ticker::before, .ticker::after { width: 60px; }
+  .ticker__stat { padding: 0 20px; }
+  .ticker__value { font-size: 18px; }
+  .ticker__label { font-size: 12px; }
+}

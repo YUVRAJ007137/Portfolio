@@ -1,0 +1,209 @@
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/desk_background.png');
+  background-size: cover;
+  background-position: center 20%;
+  transform: scale(1.1);
+  filter: brightness(1.50) contrast(1.15) saturate(0.8);
+  will-change: transform;
+}
+
+.hero__gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--bg) 0%, rgba(6,6,6,0.85) 35%, rgba(6,6,6,0.3) 70%, rgba(6,6,6,0.6) 100%),
+    linear-gradient(to top, var(--bg) 0%, transparent 40%),
+    linear-gradient(to bottom, var(--bg) 0%, transparent 30%);
+  z-index: 1;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  will-change: transform;
+}
+
+/* Label */
+.hero__label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.hero__label-line {
+  width: 40px;
+  height: 1px;
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green-glow);
+}
+
+.hero__label-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--green);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.6s var(--transition);
+}
+
+.hero__label-text.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Name */
+.hero__name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 9vw, 130px);
+  line-height: 0.95;
+  letter-spacing: 4px;
+  color: var(--text);
+  margin-bottom: 0;
+  position: relative;
+}
+
+.hero__name-line {
+  display: block;
+}
+
+.hero__char {
+  display: inline-block;
+}
+
+.hero__cursor {
+  color: var(--green);
+  animation: blink 1s step-end infinite;
+  font-weight: 300;
+  text-shadow: 0 0 20px var(--green-glow);
+  margin-left: 2px;
+}
+
+/* Divider */
+.hero__divider {
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--green), var(--green-bright), transparent);
+  margin: 24px 0;
+  transition: width 0.8s var(--transition);
+  border-radius: 2px;
+}
+
+.hero__divider.show {
+  width: min(350px, 70%);
+}
+
+/* Badges */
+.hero__badges {
+  display: flex;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.6s var(--transition);
+}
+
+.hero__badges.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(8px);
+}
+
+.hero__badge svg {
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+/* Scroll indicator */
+.hero__scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.5s;
+}
+
+.hero__scroll.show {
+  opacity: 1;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--green));
+  animation: float 2s ease-in-out infinite;
+}
+
+.hero__scroll span {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+/* ─── MOBILE ─── */
+@media (max-width: 768px) {
+  .hero__content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .hero__gradient {
+    background:
+      linear-gradient(to top, var(--bg) 0%, transparent 60%),
+      linear-gradient(to bottom, var(--bg) 0%, transparent 40%),
+      rgba(6,6,6,0.5);
+  }
+  .hero__badges {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .hero__badge {
+    width: fit-content;
+  }
+  .hero__scroll {
+    bottom: 24px;
+  }
+}
+
+[data-theme="light"] .hero__name {
+  color: #0f172a;
+  text-shadow: none;
+}
