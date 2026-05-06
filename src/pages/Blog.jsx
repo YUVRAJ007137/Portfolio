@@ -12,6 +12,10 @@ const TwitterTimeline = () => {
       script.async = true;
       script.charset = 'utf-8';
       document.body.appendChild(script);
+    } else if (window.twttr && window.twttr.widgets) {
+      // If the script is already loaded (e.g. from navigating between pages),
+      // we need to tell Twitter to re-parse the DOM to render the new <a> tag.
+      window.twttr.widgets.load();
     }
   }, []);
 
