@@ -1,7 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import './Blog.css';
+
+const TwitterTimeline = () => {
+  useEffect(() => {
+    // Inject the Twitter widget script if it's not already on the page
+    if (!document.getElementById('twitter-widget-script')) {
+      const script = document.createElement('script');
+      script.id = 'twitter-widget-script';
+      script.src = 'https://platform.twitter.com/widgets.js';
+      script.async = true;
+      script.charset = 'utf-8';
+      document.body.appendChild(script);
+    }
+  }, []);
+
+  return (
+    <div style={{ width: '100%', maxWidth: '600px', backgroundColor: 'transparent' }}>
+      <a
+        className="twitter-timeline"
+        data-theme="dark"
+        data-height="800"
+        data-chrome="nofooter noheader transparent noborders"
+        href="https://twitter.com/YSC_137?ref_src=twsrc%5Etfw"
+      >
+        Tweets by YSC_137
+      </a>
+    </div>
+  );
+};
 
 const Blog = () => {
   return (
@@ -26,14 +53,7 @@ const Blog = () => {
             transition={{ duration: 0.5 }}
             style={{ width: '100%', maxWidth: '600px' }}
           >
-            <TwitterTimelineEmbed
-              sourceType="profile"
-              screenName="YSC_137" 
-              options={{ height: 800, theme: 'dark' }} 
-              transparent
-              noHeader
-              noBorders
-            />
+            <TwitterTimeline />
           </motion.div>
         </div>
       </div>
